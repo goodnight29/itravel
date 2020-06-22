@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" method="post" enctype="multipart/form-data" onsubmit="return false" id="form">
+		<fieldset>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>rid</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='rid' type='text' name='rid' id='rid' data-bv-notempty='true' data-bv-notempty-message='rid 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>rname</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='rname' type='text' name='rname' id='rname' data-bv-notempty='true' data-bv-notempty-message='rname 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>price</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='price' type='text' name='price' id='price' data-bv-notempty='true' data-bv-notempty-message='price 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>routeIntroduce</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='routeIntroduce' type='text' name='routeIntroduce' id='routeIntroduce' data-bv-notempty='true' data-bv-notempty-message='routeIntroduce 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>rflag</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='rflag' type='text' name='rflag' id='rflag' data-bv-notempty='true' data-bv-notempty-message='rflag 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>rdate</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='rdate' type='text' name='rdate' id='rdate' data-bv-notempty='true' data-bv-notempty-message='rdate 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>isThemeTour</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='isThemeTour' type='text' name='isThemeTour' id='isThemeTour' data-bv-notempty='true' data-bv-notempty-message='isThemeTour 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>count</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='count' type='text' name='count' id='count' data-bv-notempty='true' data-bv-notempty-message='count 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>cid</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='cid' type='text' name='cid' id='cid' data-bv-notempty='true' data-bv-notempty-message='cid 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>rimage</label>
+				<div class='col-md-10'>
+					<!-- <input class='form-control' placeholder='rimage' type='text' name='rimage' id='rimage' data-bv-notempty='true' data-bv-notempty-message='rimage 不能为空'> -->
+					<input id="file" name="file" type="file">
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>sid</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='sid' type='text' name='sid' id='sid' data-bv-notempty='true' data-bv-notempty-message='sid 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>sourceId</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='sourceId' type='text' name='sourceId' id='sourceId' data-bv-notempty='true' data-bv-notempty-message='sourceId 不能为空'>
+				</div>
+			</div>
+
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='routeList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="add()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+		    var layer = layui.layer;
+		});
+		
+		function add() {
+			$('#form').bootstrapValidator();
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+		    
+		    //var formdata = $("#form").serializeObject();
+		    var formdata = new FormData($("#form")[0]);;
+
+			$.ajax({
+				type : 'post',
+				url : '/routes',
+				data : formdata,
+				contentType:false,
+				processData:false,
+				success : function(data) {
+					layer.msg("添加成功", {shift: -1, time: 1000}, function(){
+                        location.href = "routeList.html";
+                    });
+				}
+			});
+		}
+		
+	</script>
+</body>
+</html>

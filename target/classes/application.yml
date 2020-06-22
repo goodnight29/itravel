@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    username: root
+    password: Ab123456@
+    url: jdbc:mysql://localhost:3306/itravel?serverTimezone=GMT%2B8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 1048576
+  redis:
+    host: localhost
+    port: 6379
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+pagehelper:
+  helper-dialect: mysql
+  #超过最大页数后还会返回数据:reasonable: true
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+files:
+  path: ${file-path:/Users/chenmingming/Downloads/springboot/itravel/src/main/resources/static/img/product/}
